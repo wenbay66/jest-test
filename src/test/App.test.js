@@ -34,6 +34,7 @@ test('第一次點擊 CheckBox 後禁用 button, 第二次點擊後啟用 button
   // 第一次點擊 checkbox 後按鈕被 disabled
   fireEvent.click(checkBox);
   expect(colorButton).toBeDisabled();
+  
 
 
   // 第二次點擊 checkbox 後按鈕被 enabled
