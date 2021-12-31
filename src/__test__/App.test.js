@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
+import userEvent from '@testing-library/user-event';
 import App from '../pages/App';
 
 test('第一次點擊 CheckBox 後禁用 button, 第二次點擊後啟用 button', () => {
