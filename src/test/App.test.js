@@ -1,44 +1,28 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
 import App from '../pages/App';
-
-test('按鈕顏色檢查', () => {
-  render(<App />);
-
-  const colorButton = screen.getByTestId('testBtn');
-
-  // toXX   =>   https://github.com/testing-library/jest-dom
-  expect(colorButton).toHaveStyle({ backgroundColor: 'red' });
-
-  // 測試點擊前按鈕文字是否正確
-  expect(colorButton.textContent).toBe('Change to blue');
-
-  // 測試點擊按鈕前背景是不是紅色
-  expect(colorButton).toHaveStyle({ background: 'red' });
-
-  // 點擊按鈕
-  fireEvent.click(colorButton);
-
-  // 測試按鈕點擊後背景是否有變成藍色
-  expect(colorButton).toHaveStyle({ backgroundColor: 'blue' });
-
-  // 測試點擊後按鈕文字是否正確
-  expect(colorButton.textContent).toBe('Change to red');
-});
 
 test('第一次點擊 CheckBox 後禁用 button, 第二次點擊後啟用 button', () => {
   render(<App />);
 
-  const colorButton = screen.getByTestId('testBtn');
-  const checkBox = screen.getByTestId('testCheckBox');
-
-  // 第一次點擊 checkbox 後按鈕被 disabled
-  fireEvent.click(checkBox);
-  expect(colorButton).toBeDisabled();
+  const colorButton = screen.getByRole('button', {name: 'Change to blue'} );
+  const checkbox = screen.getByTestId('superCheckBox');
   
+  // 檢查 colorButton 有沒有被渲染出來
+  expect(colorButton).toBeInTheDocument();
 
-
-  // 第二次點擊 checkbox 後按鈕被 enabled
-  fireEvent.click(checkBox);
+  // 檢查第一次渲染時 colorButton 必須是起用狀態
   expect(colorButton).toBeEnabled();
 
-})
+  // 檢查勾選 checkbox 後 colorButton 必須是 disabled
+  userEvent.click(checkbox);
+  expect(colorButton).not.toBeEnabled();
+});
+
+
+
+
+
+
+
+
