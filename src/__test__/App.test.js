@@ -16,7 +16,7 @@ test('第一次點擊 CheckBox 後禁用 button, 第二次點擊後啟用 button
 
   // 檢查勾選 checkbox 後 colorButton 必須是 disabled
   userEvent.click(checkbox);
-  expect(colorButton).not.toBeEnabled();
+  expect(colorButton).toBeDisabled();
 });
 
 
